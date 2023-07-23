@@ -14,7 +14,7 @@
       "run_at": "document_end"
     },
     {
-      "matches": ["https://moodle.s.kyushu-u.ac.jp/user/profile.php?id=79966&showallcourses=1"],
+      "matches": ["https://moodle.s.kyushu-u.ac.jp/user/profile.php?*&showallcourses=1"],
       "js": ["search_bar/load.js"],
       "run_at": "document_end"
     }

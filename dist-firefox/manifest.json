@@ -19,7 +19,7 @@
   },
   {
    "matches": [
-    "https://moodle.s.kyushu-u.ac.jp/user/profile.php?id=79966&showallcourses=1"
+    "https://moodle.s.kyushu-u.ac.jp/user/profile.php?*&showallcourses=1"
    ],
    "js": [
     "search_bar/load.js"
