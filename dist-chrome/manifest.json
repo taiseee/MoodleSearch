@@ -1,0 +1,25 @@
+{
+  "manifest_version": 3,
+  "name": "MoodleSearch",
+  "version": "1.0",
+  "description": "description",
+  "permissions": [
+    "activeTab",
+    "storage"
+  ],
+  "action": {
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://moodle.s.kyushu-u.ac.jp/*"],
+      "js": ["search_bar/index.js"],
+      "run_at": "document_end"
+    },
+    {
+      "matches": ["https://moodle.s.kyushu-u.ac.jp/user/profile.php?id=79966&showallcourses=1"],
+      "js": ["search_bar/load.js"],
+      "run_at": "document_end"
+    }
+  ]
+}
