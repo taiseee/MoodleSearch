@@ -16030,7 +16030,6 @@
       resolve(getCourse(inputValue));
     });
     const openWindow = (event) => {
-      console.log(event);
       window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`, "_self");
     };
     return /* @__PURE__ */ import_react.default.createElement("div", { style: { width: "50vw" } }, /* @__PURE__ */ import_react.default.createElement(

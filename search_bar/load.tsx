@@ -1,19 +1,10 @@
-// chromestorageに保存する
+// chrome.storageにコースを保存する
 const saveCourse = async (courseId, courseName) => {
     return chrome.storage.local.set({ [courseId]: courseName }).then(() => {
     }).catch((error) => {
         console.log(error)
     })
 }
-
-// chromestorageから取得する
-// const getCourse = async () => {
-//     return chrome.storage.local.get().then((data) => {
-//         return data
-//     }).catch((error) => {
-//         console.log(error)
-//     })
-// }
 
 // 全てのコースをchrome.storageに保存する
 const saveAllCourse = async () => {
@@ -27,9 +18,6 @@ const saveAllCourse = async () => {
             await saveCourse(courseId, courseName);
         }
     }));
-
-    // const data = await getCourse();
-    // console.log(data);
 }
 
 saveAllCourse()

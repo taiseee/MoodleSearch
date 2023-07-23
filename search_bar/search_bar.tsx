@@ -1,7 +1,6 @@
 import React from 'react';
 import AsyncSelect from 'react-select/async';
 
-// Define the OptionType for Select component
 interface OptionType {
     value: string;
     label: string;
@@ -16,7 +15,6 @@ export const SearchBar: React.FC = () => {
             return { value: key, label: backet[key] }
         });
 
-        // Filter options based on user input
         const filteredOptions: OptionType[] = options.filter(option => option.label.toLowerCase().includes(inputValue.toLowerCase()));
 
         return filteredOptions;
@@ -28,7 +26,6 @@ export const SearchBar: React.FC = () => {
         });
 
     const openWindow = (event: OptionType) => {
-        console.log(event);
         window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`, '_self')
     }
 
