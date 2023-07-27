@@ -8,7 +8,7 @@ interface OptionType {
 
 export const SearchBar: React.FC = () => {
 
-    const getCourse = async (inputValue: string): Promise<OptionType[]> => {
+    const getOpt = async (inputValue: string): Promise<OptionType[]> => {
         const backet: { [key: string]: string } = await chrome.storage.local.get();
 
         const options: OptionType[] = Object.keys(backet).map((key) => {
@@ -17,13 +17,11 @@ export const SearchBar: React.FC = () => {
 
         const filteredOptions: OptionType[] = options.filter(option => option.label.toLowerCase().includes(inputValue.toLowerCase()));
 
+        // 逆順sort
+        filteredOptions.reverse();
+
         return filteredOptions;
     }
-
-    const promiseOptions = (inputValue: string) =>
-        new Promise<OptionType[]>(resolve => {
-            resolve(getCourse(inputValue));
-        });
 
     const openWindow = (event: OptionType) => {
         window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`, '_self')
@@ -34,7 +32,7 @@ export const SearchBar: React.FC = () => {
             <AsyncSelect
                 placeholder="コースを検索"
                 noOptionsMessage={() => "そのようなコースには登録されていません"}
-                loadOptions={promiseOptions}
+                loadOptions={getOpt}
                 isClearable={true}
                 onChange={openWindow}
                 cacheOptions

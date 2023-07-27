@@ -16024,10 +16024,11 @@
         return { value: key, label: backet[key] };
       });
       const filteredOptions = options.filter((option) => option.label.toLowerCase().includes(inputValue.toLowerCase()));
+      filteredOptions.reverse();
       return filteredOptions;
     });
-    const promiseOptions = (inputValue) => new Promise((resolve) => {
-      resolve(getCourse(inputValue));
+    const asyncOpt = (inputValue) => __async(void 0, null, function* () {
+      return getCourse(inputValue);
     });
     const openWindow = (event) => {
       window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`, "_self");
@@ -16037,7 +16038,7 @@
       {
         placeholder: "\u30B3\u30FC\u30B9\u3092\u691C\u7D22",
         noOptionsMessage: () => "\u305D\u306E\u3088\u3046\u306A\u30B3\u30FC\u30B9\u306B\u306F\u767B\u9332\u3055\u308C\u3066\u3044\u307E\u305B\u3093",
-        loadOptions: promiseOptions,
+        loadOptions: asyncOpt,
         isClearable: true,
         onChange: openWindow,
         cacheOptions: true,
@@ -16055,6 +16056,13 @@
   var container = document.getElementById("root");
   var root = (0, import_client.createRoot)(container);
   root.render(/* @__PURE__ */ import_react2.default.createElement(SearchBar, null));
+  document.addEventListener("keyup", focus);
+  function focus(e) {
+    if (e.key == "/") {
+      document.getElementById("react-select-2-input").focus();
+    }
+    return false;
+  }
 })();
 /**
  * @license React
