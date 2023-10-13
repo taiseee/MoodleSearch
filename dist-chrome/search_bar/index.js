@@ -16018,7 +16018,7 @@
 
   // search_bar/search_bar.tsx
   var SearchBar = () => {
-    const getCourse = (inputValue) => __async(void 0, null, function* () {
+    const getOpt = (inputValue) => __async(void 0, null, function* () {
       const backet = yield chrome.storage.local.get();
       const options = Object.keys(backet).map((key) => {
         return { value: key, label: backet[key] };
@@ -16027,18 +16027,21 @@
       filteredOptions.reverse();
       return filteredOptions;
     });
-    const asyncOpt = (inputValue) => __async(void 0, null, function* () {
-      return getCourse(inputValue);
-    });
     const openWindow = (event) => {
-      window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`, "_self");
+      window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`);
     };
-    return /* @__PURE__ */ import_react.default.createElement("div", { style: { width: "50vw" } }, /* @__PURE__ */ import_react.default.createElement(
+    const style = {
+      height: "100%",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    };
+    return /* @__PURE__ */ import_react.default.createElement("div", { style }, /* @__PURE__ */ import_react.default.createElement(
       import_react_select_async_cjs_default._default,
       {
         placeholder: "\u30B3\u30FC\u30B9\u3092\u691C\u7D22",
         noOptionsMessage: () => "\u305D\u306E\u3088\u3046\u306A\u30B3\u30FC\u30B9\u306B\u306F\u767B\u9332\u3055\u308C\u3066\u3044\u307E\u305B\u3093",
-        loadOptions: asyncOpt,
+        loadOptions: getOpt,
         isClearable: true,
         onChange: openWindow,
         cacheOptions: true,
@@ -16050,8 +16053,8 @@
   // search_bar/index.tsx
   var rootElement = document.createElement("div");
   rootElement.id = "root";
-  var parentElement = document.querySelector("nav");
-  var refarenceElement = document.querySelector("nav ul");
+  var parentElement = document.querySelector("nav.navbar");
+  var refarenceElement = document.querySelector("nav.navbar>ul");
   parentElement == null ? void 0 : parentElement.insertBefore(rootElement, refarenceElement.nextSibling);
   var container = document.getElementById("root");
   var root = (0, import_client.createRoot)(container);

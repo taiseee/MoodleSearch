@@ -29,15 +29,12 @@
   var require_load = __commonJS({
     "search_bar/load.tsx"(exports) {
       var saveCourse = (courseId, courseName) => __async(exports, null, function* () {
-        return chrome.storage.local.set({ [courseId]: courseName }).then(() => {
-        }).catch((error) => {
-          console.log(error);
-        });
+        yield chrome.storage.local.set({ [courseId]: courseName });
       });
       var saveAllCourse = () => __async(exports, null, function* () {
         const courseElems = document.querySelectorAll(".contentnode ul li a");
-        const courses = Array.from(courseElems);
-        yield Promise.all(courses.map((course) => __async(exports, null, function* () {
+        const courseArray = Array.from(courseElems);
+        yield Promise.all(courseArray.map((course) => __async(exports, null, function* () {
           const courseName = course.textContent;
           const courseUrl = course.getAttribute("href");
           const courseId = courseUrl == null ? void 0 : courseUrl.split("course=")[1].split("&")[0];

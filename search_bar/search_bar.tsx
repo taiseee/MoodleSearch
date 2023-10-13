@@ -24,11 +24,18 @@ export const SearchBar: React.FC = () => {
     }
 
     const openWindow = (event: OptionType) => {
-        window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`, '_self')
+        window.open(`https://moodle.s.kyushu-u.ac.jp/course/view.php?id=${event.value}`)
     }
 
+    const style = {
+        height: '100%',
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+    };
+
     return (
-        <div style={{ width: '50vw' }}>
+        <div style={style}>
             <AsyncSelect
                 placeholder="コースを検索"
                 noOptionsMessage={() => "そのようなコースには登録されていません"}
